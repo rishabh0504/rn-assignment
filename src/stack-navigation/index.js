@@ -5,6 +5,7 @@ import Cart from '../screens/cart';
 import Profile from '../screens/profile';
 import MyTabs from '../tab-navigation';
 import Header from '../components/header';
+import Product from '../screens/product-detail';
 
 
 const Stack = createStackNavigator();
@@ -14,37 +15,10 @@ function AppStackNavigator() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName='Landing'>
                 <Stack.Screen name='Landing' component={MyTabs} options={{ headerTitle: props => <Header {...props} /> }} />
-                <Stack.Screen name='Profile' component={Profile} options={{ title: 'Profile Screen' }} />
-                <Stack.Screen name='Cart' component={Cart} options={{ title: 'Cart Screen' }} />
+                <Stack.Screen name='Profile' component={Profile} options={{ title: 'Profile' }} />
+                <Stack.Screen name='Cart' component={Cart} options={{ title: 'Cart' }} />
+                <Stack.Screen name='ProductDetail' component={Product} options={{ title: 'Product Detail' }} />
             </Stack.Navigator>
-            {/* <Tab.Navigator
-                tabBarOptions={
-                    {
-                        style: {
-                            height: 50,
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignContent: 'center',
-                            alignItems: 'center',
-
-                        },
-                        activeTintColor: '#845EC2',
-                        labelStyle: {
-                            fontSize: 15,
-                            margin: 'auto'
-                        },
-                        tabStyle: {
-                            justifyContent: 'center'
-                        },
-                        lazy: false
-                    }
-                }
-            >
-                <Tab.Screen name="Home" component={Home} />
-                <Tab.Screen name="Profile" component={Profile} />
-                <Tab.Screen name="Cart" component={Cart} />
-
-            </Tab.Navigator> */}
         </NavigationContainer>
     )
 }

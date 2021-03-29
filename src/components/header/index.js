@@ -2,13 +2,12 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-function Header(props) {
+function Header() {
     const navigation = useNavigation();
-
     return (
         <View style={styles.headerContainer}>
             <View flex={4}>
-                <Text>Shophere</Text>
+                <Text style={styles.brandName}>Shophere</Text>
             </View>
             <View flex={4} style={styles.cartStyle}>
                 <TouchableOpacity onPress={() => { navigation.navigate('Cart') }}>
@@ -34,7 +33,11 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        backgroundColor: 'red'
+    },
+    brandName: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: 'black'
     }
 })
 

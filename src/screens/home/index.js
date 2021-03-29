@@ -1,16 +1,14 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import Category from '../../components/category';
+import Products from '../../components/product';
 
 function Home(props) {
     const { navigation } = props;
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Home Screen</Text>
-            <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate('Cart')}>
-                <Text style={styles.buttonText}>Go to Detail Screen</Text>
-            </TouchableOpacity>
+            <Category />
+            <Products />
         </View>
     )
 }
@@ -18,10 +16,7 @@ function Home(props) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#ebebeb'
+        flex: 1
     },
     text: {
         color: '#101010',
