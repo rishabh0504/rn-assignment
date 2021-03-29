@@ -30,10 +30,16 @@ function Profile() {
                 <View style={styles.avatar}>
                     <Text style={styles.avatarText}>{user.name.firstname} {user.name.lastname}</Text>
                 </View>
+                <View style={styles.userDetail}>
+                    <Text style={styles.label}>Full name : </Text>
+                    <Text> {user.name.firstname} {user.name.lastname}</Text>
+                    <Text style={styles.label}>Email : </Text>
+                    <Text> {user.email}</Text>
+                    <Text style={styles.label}>Phone :  </Text>
+                    <Text>{user.phone}</Text>
+                </View>
             </View>
-            <View style={styles.userDetail}>
 
-            </View>
         </View>
     )
 }
@@ -57,16 +63,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     userDetail: {
-        backgroundColor: 'green',
-        flexDirection: 'row',
-        height: 200,
-        marginTop: 20
+        flexDirection: 'column',
+        marginLeft: 50,
+        marginRight: 50,
     },
     avatarText: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 16
-    }
+    },
+    label: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginTop: 10,
+    },
 });
 
 export default Profile
