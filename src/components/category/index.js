@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import API_ENDPOINT from '../../constants/Config';
+import { API_ENDPOINT } from '../../constants/Config';
 import { getApi } from '../../services/http-service';
 
 const Category = () => {

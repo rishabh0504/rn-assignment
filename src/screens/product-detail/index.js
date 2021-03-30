@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ImageBackground, Dimensions, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 let { width, height } = Dimensions.get('window');
-import API_ENDPOINT from '../../constants/Config';
+import { API_ENDPOINT } from '../../constants/Config';
 import { getApi } from '../../services/http-service';
 
 

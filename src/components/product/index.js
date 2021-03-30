@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, ImageBackground, Text, TouchableOpacity, ScrollView } from 'react-native';
-import API_ENDPOINT from '../../constants/Config';
+import { API_ENDPOINT } from '../../constants/Config';
 import { getApi } from '../../services/http-service';
 import { useNavigation } from '@react-navigation/native';
 

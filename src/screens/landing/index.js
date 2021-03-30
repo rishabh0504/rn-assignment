@@ -8,8 +8,6 @@ function Landing(props) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Landing</Text>
-
-            {/* <MyTabs /> */}
         </View>
     )
 }

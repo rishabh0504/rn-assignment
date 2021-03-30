@@ -1,6 +1,5 @@
 import axios from 'axios';
 export const getApi = async (url) => {
-    console.log(url);
     try {
         const data = await axios.get(url);
         return data.data;
