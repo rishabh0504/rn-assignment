@@ -2,39 +2,69 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { API_ENDPOINT } from '../../constants/Config';
 import { getApi } from '../../services/http-service';
+import Loading from '../loading';
+import NotFound from '../not-found';
 
 const Category = () => {
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         async function fetchCategory() {
             const url = API_ENDPOINT + 'products/categories';
             const categories = await getApi(url) || [];
-            setCategories(categories)
+            setCategories(categories);
+            setLoading(false);
         }
         fetchCategory();
     }, [])
     return (
         <View>
-            <Text style={styles.categoryText}>Categories : </Text>
-            <View style={styles.categoryContainer}>
-                {
-                    Array.isArray(categories) && (
-                        categories.map((item, index) => {
-                            return (
-                                <TouchableOpacity
-                                    style={styles.button}
-                                    onPress={() => { }}
-                                    key={index}
-                                >
-                                    <Text> {item} </Text>
-                                </TouchableOpacity>
-                            )
-                        })
+            {
+                loading && <Loading />
+            }
+            {
+                !loading && (
+                    <>
+                        <Text style={styles.categoryText}>Categories : </Text>
 
-                    )
-                }
-            </View>
+                        {
+                            !Array.isArray(categories) && (
+
+                                <>
+                                    <NotFound />
+                                </>
+                            )
+                        }
+                        {
+                            Array.isArray(categories) && (
+                                <>
+                                    <NotFound />
+                                </>
+                            )
+                        }
+                        <View style={styles.categoryContainer}>
+                            {
+                                Array.isArray(categories) && (
+                                    categories.map((item, index) => {
+                                        return (
+                                            <TouchableOpacity
+                                                style={styles.button}
+                                                onPress={() => { }}
+                                                key={index}
+                                            >
+                                                <Text> {item} </Text>
+                                            </TouchableOpacity>
+                                        )
+                                    })
+
+                                )
+                            }
+                        </View>
+                    </>
+                )
+            }
         </View>
     )
 }
@@ -43,11 +73,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'flex-start',
-        // borderWidth: 1,
         padding: 2,
         alignContent: 'flex-start',
         flexWrap: 'wrap',
-        // borderColor: '#D7D7D7'
     },
     categoryText: {
         fontSize: 15,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from 'react-native'
 import MyTabs from '../../tab-navigation'
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -7,7 +7,7 @@ function Landing(props) {
     const { navigation } = props
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Landing</Text>
+            <ImageBackground source={{ uri: '../../' }} />
         </View>
     )
 }

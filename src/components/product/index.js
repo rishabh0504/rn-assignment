@@ -3,48 +3,58 @@ import { View, StyleSheet, ImageBackground, Text, TouchableOpacity, ScrollView }
 import { API_ENDPOINT } from '../../constants/Config';
 import { getApi } from '../../services/http-service';
 import { useNavigation } from '@react-navigation/native';
+import Loading from '../loading';
 
 const Products = () => {
     const navigation = useNavigation();
 
+    const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         async function fetchProducts() {
             const url = API_ENDPOINT + 'products';
             const products = await getApi(url) || [];
-            setProducts(products)
+            setProducts(products);
+            setLoading(false);
         }
         fetchProducts();
     }, [])
     return (
         <View style={styles.productContainer}>
-            <Text style={styles.productText}>Products : </Text>
-            {/* <SafeAreaView style={styles.container}> */}
-            <ScrollView style={styles.scrollView}>
-                <View>
-                    {
-                        products && products.map((product, index) => {
-                            return (
-                                <TouchableOpacity key={index} onPress={() => { navigation.navigate('ProductDetail', { id: product.id }) }}>
-                                    <View style={styles.productTile}>
-                                        <View flex={4}>
-                                            <ImageBackground source={{ uri: product.image }} style={styles.image}>
-                                            </ImageBackground>
-                                        </View>
-                                        <View flex={6} style={{ padding: 5 }}>
-                                            <Text>Title: {product.title}</Text>
-                                            <Text></Text>
-                                            <Text>Price: {product.price}</Text>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            )
-                        })
-                    }
-                </View>
-            </ScrollView>
-            {/* </SafeAreaView> */}
+            {
+                loading && <Loading />
+            }
+            {
+                !loading && (
+                    <>
+                        <Text style={styles.productText}>Products : </Text>
+                        <ScrollView style={styles.scrollView}>
+                            <View>
+                                {
+                                    products && products.map((product, index) => {
+                                        return (
+                                            <TouchableOpacity key={index} onPress={() => { navigation.navigate('ProductDetail', { id: product.id }) }}>
+                                                <View style={styles.productTile}>
+                                                    <View flex={4}>
+                                                        <ImageBackground source={{ uri: product.image }} style={styles.image}>
+                                                        </ImageBackground>
+                                                    </View>
+                                                    <View flex={6} style={{ padding: 5 }}>
+                                                        <Text>Title: {product.title}</Text>
+                                                        <Text></Text>
+                                                        <Text>Price: {product.price}</Text>
+                                                    </View>
+                                                </View>
+                                            </TouchableOpacity>
+                                        )
+                                    })
+                                }
+                            </View>
+                        </ScrollView>
+                    </>
+                )
+            }
         </View>
     )
 }

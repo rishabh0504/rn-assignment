@@ -8,8 +8,6 @@ function NotFound() {
         </View>
     )
 }
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -19,8 +17,8 @@ const styles = StyleSheet.create({
         color: '#101010',
         fontSize: 24,
         fontWeight: 'bold',
-        textAlign: center
+        textAlign: 'center'
     }
 })
 
-export default Home
+export default NotFound

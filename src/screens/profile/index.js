@@ -45,13 +45,13 @@ function Profile() {
     }
     return (
         <View style={styles.container}>
-            <View style={styles.userContainer}>
-                {
-                    loading && <Loading />
-                }
-                {
-                    !loading && (
-                        <>
+            {
+                loading && <Loading />
+            }
+            {
+                !loading && (
+                    <>
+                        <View style={styles.userContainer}>
                             <View style={styles.avatar}>
                                 <Text style={styles.avatarText}>{user?.name?.firstname} {user?.name?.lastname}</Text>
                             </View>
@@ -63,36 +63,28 @@ function Profile() {
                                 <Text style={styles.label}>Phone :  </Text>
                                 <Text>{user?.phone}</Text>
                             </View>
-                        </>
-                    )
-                }
-            </View>
-            <View style={styles.addressContainer}>
-                {
-                    loading && <Loading />
-                }
-                {
-                    !loading && (<>
-                        <Text style={styles.label}>Address : </Text>
-                        <Text styles={styles.addressText}>No:{user?.address?.number}, Street :{user?.address?.street}, City: {user?.address?.city}, Zipcode: {user?.address?.zipcode}</Text>
-                    </>)
-                }
-
-            </View>
-            <View style={styles.permissionContainer}>
-                <TouchableOpacity onPress={changeDirection} >
-                    <Text style={styles.button}>Change Direction</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={openSetting}>
-                    <Text style={styles.button}>Enable Notifications</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={openSetting}>
-                    <Text style={styles.button}>Enable Location</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={openSetting}>
-                    <Text style={styles.button}>Enable Adress</Text>
-                </TouchableOpacity>
-            </View >
+                        </View>
+                        <View style={styles.addressContainer}>
+                            <Text style={styles.label}>Address : </Text>
+                            <Text styles={styles.addressText}>No:{user?.address?.number}, Street :{user?.address?.street}, City: {user?.address?.city}, Zipcode: {user?.address?.zipcode}</Text>
+                        </View>
+                        <View style={styles.permissionContainer}>
+                            <TouchableOpacity onPress={changeDirection} >
+                                <Text style={styles.button}>Change Direction</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={openSetting}>
+                                <Text style={styles.button}>Enable Notifications</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={openSetting}>
+                                <Text style={styles.button}>Enable Location</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={openSetting}>
+                                <Text style={styles.button}>Enable Adress</Text>
+                            </TouchableOpacity>
+                        </View >
+                    </>
+                )
+            }
         </View >
     )
 }
