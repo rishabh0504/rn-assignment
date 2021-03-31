@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Platform } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Linking } from 'react-native';
 import { I18nManager } from "react-native";
@@ -7,8 +7,6 @@ import RNRestart from 'react-native-restart';
 import { userId, API_ENDPOINT } from '../../constants/Config';
 import { getApi } from '../../services/http-service';
 import Loading from '../../components/loading';
-
-
 
 function Profile() {
 
@@ -43,6 +41,12 @@ function Profile() {
             RNRestart.Restart();
         }
     }
+
+    const openLocation = (lat, lng) => {
+        var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
+        var url = scheme + `${lat},${lng}`;
+        Linking.openURL(url);
+    }
     return (
         <View style={styles.container}>
             {
@@ -67,6 +71,11 @@ function Profile() {
                         <View style={styles.addressContainer}>
                             <Text style={styles.label}>Address : </Text>
                             <Text styles={styles.addressText}>No:{user?.address?.number}, Street :{user?.address?.street}, City: {user?.address?.city}, Zipcode: {user?.address?.zipcode}</Text>
+                        </View>
+                        <View style={styles.addressContainer}>
+                            <TouchableOpacity onPress={() => openLocation(user?.address?.geolocation?.lat, user?.address?.geolocation?.long)}>
+                                <Text style={styles.label}> Click here for location</Text>
+                            </TouchableOpacity>
                         </View>
                         <View style={styles.permissionContainer}>
                             <TouchableOpacity onPress={changeDirection} >
