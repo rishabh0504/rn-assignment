@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from 'react-native'
-import MyTabs from '../../tab-navigation'
+import BottomTabs from '../../tab-navigation'
 import { NavigationContainer } from '@react-navigation/native';
 
 function Landing(props) {

@@ -5,7 +5,7 @@ import Profile from '../screens/profile';
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function BottomTabs() {
     return (
         <Tab.Navigator tabBarOptions={
             {
@@ -26,4 +26,4 @@ function MyTabs() {
     );
 }
 
-export default MyTabs
+export default BottomTabs
