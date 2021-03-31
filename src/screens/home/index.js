@@ -4,13 +4,14 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView, ImageBackground }
 import Loading from '../../components/loading';
 import { API_ENDPOINT } from '../../constants/Config';
 import { getApi } from '../../services/http-service';
-
-function Home(props) {
+import NotFound from '../../components/not-found';
+function Home() {
     const navigation = useNavigation();
-
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [category, setCategory] = useState(null);
+
 
     useEffect(() => {
         async function fetchProducts() {
@@ -31,6 +32,14 @@ function Home(props) {
         }
         fetchCategory();
     }, []);
+
+    const getProductsByCategory = async (category) => {
+        setLoading(true);
+        const url = API_ENDPOINT + `products/category/${category}`;
+        const products = await getApi(url) || [];
+        setProducts(products);
+        setLoading(false);
+    }
 
     return (
         <>
@@ -67,10 +76,10 @@ function Home(props) {
                                                     return (
                                                         <TouchableOpacity
                                                             style={styles.button}
-                                                            onPress={() => { }}
+                                                            onPress={() => { getProductsByCategory(item) }}
                                                             key={index}
                                                         >
-                                                            <Text> {item} </Text>
+                                                            <Text style={styles.capitalize}> {item} </Text>
                                                         </TouchableOpacity>
                                                     )
                                                 })
@@ -168,10 +177,7 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         justifyContent: "center"
     },
-    container: {
-    },
     scrollView: {
-        // marginHorizontal: 20
     },
     categoryContainer: {
         display: 'flex',
@@ -185,13 +191,17 @@ const styles = StyleSheet.create({
         fontSize: 15,
         margin: 5,
         fontWeight: 'bold',
-        color: 'gray'
+        color: 'black',
+        textTransform: 'capitalize'
     },
     button: {
         alignItems: 'center',
         backgroundColor: '#FDAD2F',
         margin: 2,
         padding: 8,
+    },
+    capitalize: {
+        textTransform: 'capitalize'
     }
 
 })
